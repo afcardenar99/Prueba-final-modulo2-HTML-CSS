@@ -31,6 +31,7 @@ This project was built to excel in the evaluation criteria:
 ### 📂 File Structure
 
 /
+├── image           (image and logo used in the exam)
 ├── README.md      (This descriptive file)
 ├── index.html     (The main file with the HTML structure)
 └── styles.css     (The file with all CSS styles)

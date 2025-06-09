@@ -1,0 +1,322 @@
+/* ==========================================================================
+   TABLE OF CONTENTS
+   ==========================================================================
+   1. CSS Variables (Custom Properties)
+   2. Global & Base Styles
+   3. Header Styles
+   4. Navigation Styles
+   5. Main Content & Section Styles
+   6. Hero Section
+   7. Portfolio Section (CSS Grid)
+   8. Contact Section
+   9. Footer Styles
+   10.animation portfolio section
+   11. Media Queries (Responsive Design)
+      - Tablet Breakpoint (768px)
+      - Desktop Breakpoint (1024px)
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. CSS Variables (Custom Properties) 
+   ========================================================================== */
+/* * Using CSS variables is a best practice. It allows you to define reusable
+ */
+:root {
+    --color-primary: #2a79d3;      /* A strong blue for highlights and CTAs */
+    --color-primary-dark: #76007a; /* A darker shade for hover effects */
+    --color-dark-bg: #1c1c1e;      /* Dark background for the body */
+    --color-light-bg: #000000;     /* Slightly lighter background for cards/sections */
+    --color-text-primary: #f2f2f7; /* White text for high contrast */
+    --color-text-secondary: #aab2c0;/* Grey text for subtitles and descriptions */
+    --color-border: #38383a;       /* Subtle border color */
+
+    --font-primary: 'Poppins', sans-serif;
+    --font-size-base: 16px;
+    --container-width: 1140px;
+}
+
+
+/* ==========================================================================
+   2. Global & Base Styles
+   ========================================================================== */
+/*
+ * The 'box-sizing: border-box' rule is crucial for a sane layout model.
+ * It includes padding and border in the element's total width and height,
+ * which simplifies sizing calculations. The '*' selector applies it to all elements.
+ */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    scroll-behavior: smooth; 
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.7;
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-primary);
+}
+
+img {
+    max-width: 100%; 
+    height: auto;
+    display: block; 
+}
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+
+/* ==========================================================================
+   3. Header Styles
+   ========================================================================== */
+/*
+ * Using Flexbox for the header is ideal for aligning its children (logo and nav)
+ * and distributing the space between them. 'padding' adds space inside the header.
+ */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem; 
+    background-color: var(--color-light-bg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center; 
+  align-items: center;    
+  height: 50px;      
+  font-weight: 700; 
+  font-size: 1.5rem;
+ 
+}
+
+
+/* ==========================================================================
+   4. Navigation Styles
+   ========================================================================== */
+.nav-links {
+    list-style: none; 
+    display: flex; 
+    gap: 2rem; 
+}
+
+.nav-links a {
+    font-weight: 600;
+    padding: 0.5rem 0;
+    position: relative; 
+    transition: color 0.3s ease; /
+}
+
+.nav-links a:hover {
+    color: #98159c; /* Changes color on hover for feedback */
+}
+
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #98159c;
+    transform: scaleX(0); /* Initially hidden */
+    transform-origin: right;
+    transition: transform 0.4s ease-out; /* Animation for the underline */
+}
+
+.nav-links a:hover::after {
+    transform: scaleX(1); /* Reveals the underline on hover */
+    transform-origin: left;
+}
+
+
+/* ==========================================================================
+   5. Main Content & Section Styles
+   ========================================================================== */
+
+main section {
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+#about h1 strong {
+  color: #4a90e2;
+}
+
+#about h1 strong:hover {
+ color: #98159c;
+}
+.section-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-text-secondary);
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
+    padding: 1rem 2.5rem;
+    border-radius: 50px; 
+    font-weight: 700;
+    margin-top: 1em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Animation on hover.  */
+}
+
+.cta-button:hover {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-3px); 
+    
+}
+
+
+/* ==========================================================================
+   7. Portfolio Section (CSS Grid) 
+   ========================================================================== */
+/*
+ * CSS Grid is used here because it's the best tool for creating two-dimensional
+ * layouts (rows and columns). It's perfect for a portfolio or gallery.
+ */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    background-color: var(--color-light-bg);
+    border-radius: 8px;
+    overflow: hidden; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    text-align: left;
+}
+.portfolio-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(170, 35, 98, 0.671);
+}
+.portfolio-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.portfolio-item h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-item p {
+    color: var(--color-text-secondary);
+    font-size: 1rem;
+}
+
+
+.portfolio-item h3, .portfolio-item p {
+    padding: 0 1.5rem;
+}
+.portfolio-item p {
+    padding-bottom: 1.5rem;
+}
+
+
+/* ==========================================================================
+   9. Footer Styles
+   ========================================================================== */
+.main-footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--color-light-bg);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-text-secondary);
+    font-size: 0.9rem;
+}
+
+.social-links a { color: white; font-size: 1.5rem; margin-left: 1rem; }
+
+/* ==========================================================================
+   10. animation portfolio section/ Rotate 3D 
+   ========================================================================== */
+
+
+@keyframes rotate3d {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(180deg);
+  }
+  100% {
+    transform: rotateX(360deg);
+  }
+}
+.cta-button {
+  background-color: #4a90e2;;
+  color: white;
+  perspective: 300px;
+  transform-style: preserve-3d;
+}
+
+.cta-button:hover {
+  animation: rotate3d 0.7s;
+}
+
+
+
+/* ==========================================================================
+   11. Media Queries (Responsive Design) 
+   ========================================================================== */
+
+/* --- Tablet Breakpoint (768px and up) --- */
+@media (min-width: 480px) {
+    /* For tablets, we change the portfolio grid to 2 columns. */
+    .portfolio-grid {
+        grid-template-columns: repeat(1, 1fr); /* Creates a 2-column grid */
+    }
+
+    .section-title {
+        font-size: 3rem;
+    }
+}
+
+    @media (max-width: 560px) {
+        /* Código CSS que se aplicará cuando la pantalla sea de 768px o menor */
+        .logo-container {
+            display: none;
+        }
+    }
+
+/* --- Desktop Breakpoint (1024px and up) --- */
+@media (min-width: 1024px) {
+    /* For desktops, we change the portfolio grid to 3 columns. */
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr); /* Creates a 3-column grid */
+    }
+
+    main section {
+        padding: 6rem 2rem; /* Increase vertical spacing on larger screens */
+    }
+}
